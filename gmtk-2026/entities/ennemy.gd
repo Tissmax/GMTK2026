@@ -6,6 +6,10 @@ class_name Ennemy extends StaticBody2D
 var letters: Array[String]
 #variable de kill
 var kill: bool = false 
+@onready var loader: TextureProgressBar = $Loader
+
+func _process(delta: float) -> void:
+	loader.value = (timer.time_left / data.time_to_live) * 100
 
 #parametrage ennemie
 func _ready() -> void:

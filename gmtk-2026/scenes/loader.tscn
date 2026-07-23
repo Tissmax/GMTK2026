@@ -1,0 +1,20 @@
+[gd_scene format=3 uid="uid://mcvpbbut413m"]
+
+[ext_resource type="Texture2D" uid="uid://djiqsghyej8s0" path="res://assets/loader texture.png" id="1_hsw3t"]
+
+[sub_resource type="GDScript" id="GDScript_hsw3t"]
+script/source = "extends Control
+
+@onready var texture_progress_bar: TextureProgressBar = $TextureProgressBar
+"
+
+[node name="Loader" type="TextureProgressBar" unique_id=1721342358]
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+value = 100.0
+fill_mode = 5
+texture_progress = ExtResource("1_hsw3t")
+script = SubResource("GDScript_hsw3t")
