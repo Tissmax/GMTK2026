@@ -1,9 +1,9 @@
 extends Node
 const EnemyScene = preload("res://entities/ennemy.tscn")
-const STANDARD = preload("uid://cfd3kb3f82gra")
-const LINGUISTE = preload("uid://d2uhljnombkeg")
-const RAPIDE = preload("uid://bb12c47ffun6m")
-const GHOST = preload("uid://d3kiootamo7uo")
+const GHOST = preload("res://ressources/ghost.tres")
+const LINGUISTE = preload("res://ressources/linguiste.tres")
+const RAPIDE = preload("res://ressources/rapide.tres")
+const STANDARD = preload("res://ressources/standard.tres")
 
 const LETTERS = [
 	"E","T","M"
