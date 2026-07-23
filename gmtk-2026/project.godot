@@ -11,8 +11,13 @@ config_version=5
 [application]
 
 config/name="GMTK2026"
+run/main_scene="uid://bem03h5wmwj0l"
 config/features=PackedStringArray("4.6", "Forward Plus")
 config/icon="res://icon.svg"
+
+[dotnet]
+
+project/assembly_name="GMTK2026"
 
 [physics]
 
