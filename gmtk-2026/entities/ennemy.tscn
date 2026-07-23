@@ -1,7 +1,7 @@
 [gd_scene format=3 uid="uid://b8fpc1a2qitxo"]
 
 [ext_resource type="Script" uid="uid://brjcvdav54yad" path="res://entities/ennemy.gd" id="1_ups4y"]
-[ext_resource type="Script" uid="uid://b37ljcw5fknp3" path="res://ressources/ennemy_stats.gd" id="2_keurf"]
+[ext_resource type="Script" uid="uid://b37ljcw5fknp3" path="res://ressources/ennemy_data.gd" id="2_keurf"]
 
 [sub_resource type="PhysicsMaterial" id="PhysicsMaterial_keurf"]
 

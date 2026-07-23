@@ -1,0 +1,11 @@
+[gd_resource type="Resource" script_class="EnnemyData" format=3 uid="uid://d3kiootamo7uo"]
+
+[ext_resource type="Script" uid="uid://b37ljcw5fknp3" path="res://ressources/ennemy_data.gd" id="1_yrlut"]
+[ext_resource type="Texture2D" uid="uid://dhcwybhoxgwhe" path="res://icon.svg" id="2_jka7q"]
+
+[resource]
+script = ExtResource("1_yrlut")
+time_to_live = 5.0
+is_timer_visible = false
+sprite = ExtResource("2_jka7q")
+metadata/_custom_type_script = "uid://b37ljcw5fknp3"
