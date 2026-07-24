@@ -1,12 +1,12 @@
 extends Node2D
+@onready var health_bar: HBoxContainer = $HealthBar
 
 var lifes: int = 3
 var score: int
-@onready var life: Label = $Life
 
 func lose_hp(amount: int):
 	lifes -= amount
-	life.text = str(lifes)
+	health_bar.loose_hp()
 
 func _ready() -> void:
 	EnnemyManager.enemy_killed.connect(_on_enemy_killed)
