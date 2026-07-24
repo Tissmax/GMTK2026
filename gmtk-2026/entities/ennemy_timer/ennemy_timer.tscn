@@ -1,0 +1,70 @@
+[gd_scene format=3 uid="uid://cdrtludjirwhy"]
+
+[ext_resource type="Script" uid="uid://gyf1yblo2ox1" path="res://entities/ennemy_timer/ennemy_timer.gd" id="1_0vqqj"]
+[ext_resource type="Texture2D" uid="uid://bw7nbkmt82dfy" path="res://assets/ennemies/timer.png" id="1_oj4ve"]
+
+[sub_resource type="Animation" id="Animation_0vqqj"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Sprite2D:frame")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [2]
+}
+
+[sub_resource type="Animation" id="Animation_phyk0"]
+resource_name = "timer"
+length = 5.000025
+loop_mode = 1
+step = 0.25
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Sprite2D:frame")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.25, 0.49428833, 0.75, 1, 1.25, 1.5, 1.75, 2, 2.25, 2.5, 2.75, 3, 3.25, 3.5, 3.75, 4, 4.25, 4.5, 4.75),
+"transitions": PackedFloat32Array(1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1),
+"update": 1,
+"values": [1, 2, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16, 17, 18, 19]
+}
+tracks/1/type = "method"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath(".")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(3.25),
+"transitions": PackedFloat32Array(1),
+"values": [{
+"args": [],
+"method": &"_is_in_kill_zone"
+}]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_v06nd"]
+_data = {
+&"RESET": SubResource("Animation_0vqqj"),
+&"timer": SubResource("Animation_phyk0")
+}
+
+[node name="EnnemyTimer" type="Node2D" unique_id=1827601491]
+script = ExtResource("1_0vqqj")
+
+[node name="Sprite2D" type="Sprite2D" parent="." unique_id=1521198604]
+texture = ExtResource("1_oj4ve")
+hframes = 20
+frame = 2
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="." unique_id=2105535642]
+libraries/ = SubResource("AnimationLibrary_v06nd")
+
+[node name="Timer" type="Timer" parent="." unique_id=1841869052]

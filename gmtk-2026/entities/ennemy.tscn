@@ -1,7 +1,8 @@
 [gd_scene format=3 uid="uid://b8fpc1a2qitxo"]
 
 [ext_resource type="Script" uid="uid://brjcvdav54yad" path="res://entities/ennemy.gd" id="1_ups4y"]
-[ext_resource type="PackedScene" uid="uid://mcvpbbut413m" path="res://scenes/loader.tscn" id="3_lyfdw"]
+[ext_resource type="PackedScene" uid="uid://bbjc1ibsqgjdk" path="res://entities/letter_btn/letter_btn.tscn" id="2_lyfdw"]
+[ext_resource type="PackedScene" uid="uid://cdrtludjirwhy" path="res://entities/ennemy_timer/ennemy_timer.tscn" id="3_lyfdw"]
 
 [sub_resource type="PhysicsMaterial" id="PhysicsMaterial_keurf"]
 
@@ -12,29 +13,17 @@ physics_material_override = SubResource("PhysicsMaterial_keurf")
 script = ExtResource("1_ups4y")
 metadata/_custom_type_script = "uid://brjcvdav54yad"
 
-[node name="LetterTimer" type="Timer" parent="." unique_id=494811647]
-wait_time = 2.0
-one_shot = true
-autostart = true
-
 [node name="CollisionShape2D" type="CollisionShape2D" parent="." unique_id=550272061]
 shape = SubResource("RectangleShape2D_ups4y")
 
 [node name="Sprite2D" type="Sprite2D" parent="." unique_id=121368669]
 
-[node name="Timer" type="Timer" parent="." unique_id=1892401777]
+[node name="LetterBtn" parent="." unique_id=879784607 instance=ExtResource("2_lyfdw")]
+position = Vector2(80, -53)
+scale = Vector2(3, 3)
 
-[node name="Loader" parent="." unique_id=1837225424 instance=ExtResource("3_lyfdw")]
-offset_left = -12.0
-offset_top = -40.0
-offset_right = -12.0
-offset_bottom = -40.0
-script = null
+[node name="EnnemyTimer" parent="." unique_id=1827601491 instance=ExtResource("3_lyfdw")]
+position = Vector2(-59, -61)
 
-[node name="Label" type="Label" parent="." unique_id=1683541463]
-offset_left = 37.0
-offset_top = -60.0
-offset_right = 73.0
-offset_bottom = -37.0
-
-[connection signal="timeout" from="LetterTimer" to="." method="_on_letter_timer_timeout"]
+[connection signal="ennemy_timeout" from="EnnemyTimer" to="." method="_enemy_timeout"]
+[connection signal="is_in_killzone" from="EnnemyTimer" to="." method="_on_ennemy_timer_is_in_killzone"]

@@ -12,9 +12,8 @@ func _ready() -> void:
 	EnnemyManager.enemy_killed.connect(_on_enemy_killed)
 	EnnemyManager.failed_to_kill.connect(_on_kill_fail)
 	
-func _on_enemy_killed(_enemy: Ennemy, in_killzone: bool):	
-	print(in_killzone)
-	if in_killzone:
+func _on_enemy_killed(enemy: Ennemy):	
+	if enemy.in_killzone:
 		score += 1
 	else:
 		lose_hp(1)
