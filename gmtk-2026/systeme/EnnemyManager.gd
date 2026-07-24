@@ -10,14 +10,13 @@ var spawn_points: Array[Marker2D]
 
 signal enemy_killed(enemy: Ennemy)
 signal failed_to_kill()
-signal change_scene()
 
 func spawn_ennemy(type: EnnemyData):
 	var ennemy: Ennemy = EnemyScene.instantiate()
 	ennemy.data = type
 	_pick_spawn_point(ennemy)
 	ennemy.letters = LetterManager.pick_letters(ennemy.data.multiple_letters)
-	ennemies.get_or_add(ennemy.letters,ennemy)
+	ennemies[ennemy.letters] = ennemy
 	add_child(ennemy)
 
 func _input(event: InputEvent) -> void:
@@ -39,7 +38,6 @@ func to_array(strings:String)->Array:
 	return array
 	
 func _pick_spawn_point(ennemy: Ennemy):
-	spawn_points.shuffle()
 	var point = spawn_points.pick_random()
 	ennemy.position = point.position
 	spawn_points.erase(point)

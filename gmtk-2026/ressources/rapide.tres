@@ -1,11 +1,13 @@
 [gd_resource type="Resource" script_class="EnnemyData" format=3 uid="uid://bb12c47ffun6m"]
 
 [ext_resource type="Script" uid="uid://b37ljcw5fknp3" path="res://ressources/ennemy_data.gd" id="1_yx2pq"]
-[ext_resource type="Texture2D" uid="uid://mlslhu8kmrjg" path="res://assets/Monstre/Kobold Re C.png" id="2_yx2pq"]
+[ext_resource type="Texture2D" uid="uid://dj0keqm8t60uc" path="res://assets/ennemie_sprite.png" id="2_yx2pq"]
 
 [resource]
 script = ExtResource("1_yx2pq")
-time_to_live = 2.5
-timer_step = 1.5
+time_to_live = 1.5
+timer_step = 3.333
 sprite = ExtResource("2_yx2pq")
+color = Color(0, 0.60784316, 0, 1)
+shadow = Color(0, 0.36078432, 0, 1)
 metadata/_custom_type_script = "uid://b37ljcw5fknp3"

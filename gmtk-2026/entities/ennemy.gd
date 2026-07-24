@@ -5,6 +5,7 @@ class_name Ennemy extends StaticBody2D
 @onready var sprite_2d: Sprite2D = $Sprite2D
 @onready var letter_btn: Node2D = $LetterBtn
 @onready var timer: Node2D = $EnnemyTimer
+@onready var animation_player: AnimationPlayer = $AnimationPlayer
 var in_killzone: bool = false
 
 var letters: Array
@@ -16,11 +17,10 @@ var killed: bool = true
 #parametrage ennemie
 func _ready() -> void:
 	sprite_2d.texture = data.sprite
-	sprite_2d.scale = Vector2(0.08,0.08)
-	
 	add_letters()
 	timer.initiate_timer(data)
-
+	animation_player.play("idle")
+	_init_shader()
 
 # supprime ennemie 
 func _enemy_timeout():
@@ -35,8 +35,7 @@ func kill_ennemy():
 		return
 	LetterManager.add_letters(letters)
 	EnnemyManager.ennemies.erase(letters)
-	if EnnemyManager.ennemies.is_empty():
-		EnnemyManager.change_scene.emit()
+	
 	queue_free()
 
 
@@ -48,3 +47,9 @@ func add_letters():
 
 func _on_ennemy_timer_is_in_killzone() -> void:
 	in_killzone = true
+	
+func _init_shader():
+	var shader := sprite_2d.material as ShaderMaterial
+	if shader:
+		shader.set_shader_parameter("new_color", data.color)
+		shader.set_shader_parameter("new_shadow", data.shadow)
