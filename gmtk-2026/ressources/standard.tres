@@ -1,7 +1,7 @@
 [gd_resource type="Resource" script_class="EnnemyData" format=3 uid="uid://cfd3kb3f82gra"]
 
 [ext_resource type="Script" uid="uid://b37ljcw5fknp3" path="res://ressources/ennemy_data.gd" id="1_svpov"]
-[ext_resource type="Texture2D" uid="uid://dhcwybhoxgwhe" path="res://icon.svg" id="2_6fw8p"]
+[ext_resource type="Texture2D" uid="uid://57hxyh3o64qu" path="res://assets/Monstre/Bone Wizard D.jpg" id="2_6fw8p"]
 
 [resource]
 script = ExtResource("1_svpov")

@@ -5,4 +5,4 @@ class_name EnnemyData extends Resource
 @export var is_timer_visible: bool = true
 @export var sprite: Texture2D
 @export var multiple_letters: bool = false
-var letters: Array[String]
+var letters: Array

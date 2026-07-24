@@ -1,0 +1,17 @@
+[gd_scene format=3 uid="uid://d2b6img3yk1ur"]
+
+[ext_resource type="Script" uid="uid://dd81rrqlokakn" path="res://entities/player.gd" id="1_merdl"]
+
+[sub_resource type="Theme" id="Theme_u3f3p"]
+default_font_size = 45
+
+[node name="Player" type="Node2D" unique_id=135027150]
+script = ExtResource("1_merdl")
+
+[node name="Life" type="Label" parent="." unique_id=819075038]
+offset_left = 56.0
+offset_top = 38.0
+offset_right = 96.0
+offset_bottom = 61.0
+theme = SubResource("Theme_u3f3p")
+text = "3"

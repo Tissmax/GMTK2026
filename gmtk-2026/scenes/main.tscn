@@ -1,8 +1,0 @@
-[gd_scene format=3 uid="uid://bem03h5wmwj0l"]
-
-[ext_resource type="Script" uid="uid://crfbf4ywcw7eo" path="res://EnnemyManager.gd" id="4_jyhfs"]
-
-[node name="Main" type="Node2D" unique_id=791135737]
-
-[node name="Spawner" type="Node" parent="." unique_id=640280586]
-script = ExtResource("4_jyhfs")

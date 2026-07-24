@@ -1,0 +1,29 @@
+[gd_scene format=3 uid="uid://deg7513abvlwq"]
+
+[ext_resource type="Texture2D" uid="uid://bq67ph85owxg4" path="res://assets/forest1.jpg" id="1_8ffsr"]
+[ext_resource type="Script" uid="uid://c0erdo710ugv2" path="res://scenes/spawner.gd" id="2_4blue"]
+[ext_resource type="Script" uid="uid://b37ljcw5fknp3" path="res://ressources/ennemy_data.gd" id="3_oer4y"]
+[ext_resource type="Resource" uid="uid://cfd3kb3f82gra" path="res://ressources/standard.tres" id="4_o2xo8"]
+[ext_resource type="Resource" uid="uid://bb12c47ffun6m" path="res://ressources/rapide.tres" id="5_ue258"]
+
+[node name="Forest1" type="Node2D" unique_id=1801155256]
+
+[node name="Forest1" type="Sprite2D" parent="." unique_id=2039841791]
+z_index = -1
+position = Vector2(574.5, 319.5)
+scale = Vector2(0.84275365, 0.7963415)
+texture = ExtResource("1_8ffsr")
+
+[node name="Spawner" type="Node" parent="." unique_id=904044112]
+script = ExtResource("2_4blue")
+types = Array[ExtResource("3_oer4y")]([ExtResource("4_o2xo8"), ExtResource("5_ue258")])
+next_scene = "res://scenes/Forest2.tscn"
+
+[node name="SpawnPoints" type="Node" parent="." unique_id=1055047701]
+unique_name_in_owner = true
+
+[node name="Marker2D" type="Marker2D" parent="SpawnPoints" unique_id=2145810699]
+position = Vector2(862, 343)
+
+[node name="Marker2D3" type="Marker2D" parent="SpawnPoints" unique_id=2144148243]
+position = Vector2(292, 334)
