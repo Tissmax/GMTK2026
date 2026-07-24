@@ -15,8 +15,6 @@ func _ready() -> void:
 func _on_enemy_killed(enemy: Ennemy):	
 	if enemy.in_killzone:
 		score += 1
-	else:
-		lose_hp(1)
 		
 func _on_kill_fail():
 	lose_hp(1)

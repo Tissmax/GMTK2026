@@ -30,9 +30,14 @@ func _enemy_timeout():
 
 func kill_ennemy():
 	letter_btn.hit()
-	EnnemyManager.enemy_killed.emit(self)
 	if not in_killzone:
-		return
+		EnnemyManager.failed_to_kill.emit()
+		# TODO Animation de fail
+	else:
+		#TODO Animation de mort
+		pass
+		
+	EnnemyManager.enemy_killed.emit(self)
 	LetterManager.add_letters(letters)
 	EnnemyManager.ennemies.erase(letters)
 	

@@ -30,6 +30,7 @@ func _input(event: InputEvent) -> void:
 			var ennemie = ennemies.get(touche)
 			ennemie.kill_ennemy()
 		else:
+			# Perte d'HP si mauvaise touche
 			failed_to_kill.emit()
 			
 func to_array(strings:String)->Array:
