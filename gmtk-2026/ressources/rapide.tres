@@ -6,5 +6,6 @@
 [resource]
 script = ExtResource("1_yx2pq")
 time_to_live = 2.5
+timer_step = 1.5
 sprite = ExtResource("2_yx2pq")
 metadata/_custom_type_script = "uid://b37ljcw5fknp3"

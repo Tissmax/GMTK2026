@@ -70,6 +70,7 @@ theme_override_styles/hover = SubResource("StyleBoxFlat_jmdev")
 text = "Quit"
 
 [node name="PointLight2D" type="PointLight2D" parent="." unique_id=422124061]
+visible = false
 position = Vector2(479.875, 310.375)
 scale = Vector2(7.3710938, 8.324219)
 texture = SubResource("GradientTexture2D_aaywf")

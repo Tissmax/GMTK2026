@@ -8,7 +8,7 @@ var ennemies: Dictionary[Array,Ennemy]
 var timer: Timer
 var spawn_points: Array[Marker2D]
 
-signal enemy_killed(enemy: Ennemy, in_killzone: bool)
+signal enemy_killed(enemy: Ennemy)
 signal failed_to_kill()
 signal change_scene()
 
