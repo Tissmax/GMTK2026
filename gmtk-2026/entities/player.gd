@@ -2,12 +2,18 @@ extends Node2D
 @onready var health_bar: HBoxContainer = $HealthBar
 @onready var animation_player_staff: AnimationPlayer = $Arms/Staff/AnimationPlayerStaff
 @onready var animation_player_clock: AnimationPlayer = $Arms/Clock/AnimationPlayerClock
+@onready var hit_indicator: TextureRect = $HitIndicator
+@onready var camera_2d: Camera2D = $Camera2D
 
 
 var lifes: int = 3
 var score: int
 
 func lose_hp(amount: int):
+	var tween = create_tween()
+	tween.tween_property(hit_indicator, "modulate", Color(255,255,255,1),0.25)
+	tween.tween_property(hit_indicator, "modulate", Color(255,255,255,0),0.25)
+	camera_2d.shake()
 	lifes -= amount
 	health_bar.loose_hp()
 

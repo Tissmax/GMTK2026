@@ -38,7 +38,7 @@ func _input(event: InputEvent) -> void:
 		for k in keys:
 			keys_flat.append_array(k)
 		
-		_trigger_invulnerability(1)
+		trigger_invulnerability(1)
 		
 		var touche = to_array(event.as_text_key_label())
 		if ennemies.has(touche):
@@ -64,7 +64,7 @@ func _pick_spawn_point(ennemy: Ennemy):
 	ennemy.position = point.position
 	spawn_points.erase(point)
 	
-func _trigger_invulnerability(time_in_seconds: float):
+func trigger_invulnerability(time_in_seconds: float):
 	can_lose_health = false
 	await get_tree().create_timer(time_in_seconds).timeout
 	can_lose_health = true

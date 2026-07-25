@@ -26,12 +26,12 @@ func _ready() -> void:
 
 # supprime ennemie 
 func _enemy_timeout():
-	EnnemyManager.failed_to_kill.emit()
+	damage_player()
 	animation_player.play("quit")
 	kill_ennemy()
 
 
-func kill_ennemy():	
+func kill_ennemy():
 	if not in_killzone:
 		letter_btn.hit()
 		EnnemyManager.failed_to_kill.emit()
@@ -43,6 +43,7 @@ func kill_ennemy():
 		animation_player.play("death")
 		EnnemyManager.player_anim_hit.emit(false)
 	else:
+		damage_player()
 		animation_player.play("quit")
 		flop.play()
 
@@ -73,3 +74,9 @@ func _init_shader():
 	if shader:
 		shader.set_shader_parameter("new_color", data.color)
 		shader.set_shader_parameter("new_shadow", data.shadow)
+
+func damage_player():
+	if EnnemyManager.can_lose_health:
+		EnnemyManager.failed_to_kill.emit()
+		EnnemyManager.trigger_invulnerability(1)
+	

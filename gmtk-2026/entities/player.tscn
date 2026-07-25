@@ -2,9 +2,10 @@
 
 [ext_resource type="Script" uid="uid://dd81rrqlokakn" path="res://entities/player.gd" id="1_merdl"]
 [ext_resource type="Script" uid="uid://cyu6myqr6v1pi" path="res://entities/health_bar.gd" id="2_e4p34"]
-[ext_resource type="PackedScene" uid="uid://7ui5kl1fgktb" path="res://scenes/heart_bar.tscn" id="3_rfe5m"]
+[ext_resource type="PackedScene" path="res://scenes/heart_bar.tscn" id="3_rfe5m"]
 [ext_resource type="Texture2D" uid="uid://d1fuukrmits3x" path="res://assets/hand_staff.png" id="4_qly61"]
 [ext_resource type="Texture2D" uid="uid://dhvlgmphuvf3d" path="res://assets/ticking_clock.png" id="5_qsoyl"]
+[ext_resource type="Script" uid="uid://efycfcmtv77q" path="res://entities/screen_shake.gd" id="6_qsoyl"]
 
 [sub_resource type="Animation" id="Animation_qly61"]
 resource_name = "HitStaff"
@@ -109,27 +110,18 @@ _data = {
 &"Tik": SubResource("Animation_ef06p")
 }
 
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_qsoyl"]
+
+[sub_resource type="Gradient" id="Gradient_qly61"]
+colors = PackedColorArray(0, 0, 0, 0, 0.84313726, 0, 0, 0.61960787)
+
+[sub_resource type="GradientTexture2D" id="GradientTexture2D_qsoyl"]
+gradient = SubResource("Gradient_qly61")
+fill = 1
+fill_from = Vector2(0.5, 0.5)
+
 [node name="Player" type="Node2D" unique_id=135027150]
 script = ExtResource("1_merdl")
-
-[node name="HealthBar" type="HBoxContainer" parent="." unique_id=173473256]
-offset_left = 56.0
-offset_top = 38.0
-offset_right = 96.0
-offset_bottom = 78.0
-script = ExtResource("2_e4p34")
-
-[node name="HeartBar" parent="HealthBar" unique_id=1065513348 instance=ExtResource("3_rfe5m")]
-position = Vector2(-24, -17)
-scale = Vector2(3, 3)
-
-[node name="HeartBar2" parent="HealthBar" unique_id=1425130079 instance=ExtResource("3_rfe5m")]
-position = Vector2(26, -17)
-scale = Vector2(3, 3)
-
-[node name="HeartBar3" parent="HealthBar" unique_id=1611787625 instance=ExtResource("3_rfe5m")]
-position = Vector2(76, -17)
-scale = Vector2(3, 3)
 
 [node name="Arms" type="Node2D" parent="." unique_id=1263927926]
 position = Vector2(861, 481)
@@ -153,3 +145,35 @@ hframes = 8
 
 [node name="AnimationPlayerClock" type="AnimationPlayer" parent="Arms/Clock" unique_id=1873531043]
 libraries/ = SubResource("AnimationLibrary_x08pd")
+
+[node name="HitIndicator" type="TextureRect" parent="." unique_id=1001065213]
+modulate = Color(1, 1, 1, 0)
+material = SubResource("ShaderMaterial_qsoyl")
+offset_top = -1.0
+offset_right = 1159.0
+offset_bottom = 652.0
+texture = SubResource("GradientTexture2D_qsoyl")
+
+[node name="HealthBar" type="HBoxContainer" parent="." unique_id=173473256]
+offset_left = 56.0
+offset_top = 38.0
+offset_right = 96.0
+offset_bottom = 78.0
+script = ExtResource("2_e4p34")
+
+[node name="HeartBar" parent="HealthBar" unique_id=1065513348 instance=ExtResource("3_rfe5m")]
+position = Vector2(-24, -17)
+scale = Vector2(3, 3)
+
+[node name="HeartBar2" parent="HealthBar" unique_id=1425130079 instance=ExtResource("3_rfe5m")]
+position = Vector2(26, -17)
+scale = Vector2(3, 3)
+
+[node name="HeartBar3" parent="HealthBar" unique_id=1611787625 instance=ExtResource("3_rfe5m")]
+position = Vector2(76, -17)
+scale = Vector2(3, 3)
+
+[node name="Camera2D" type="Camera2D" parent="." unique_id=571710139]
+position = Vector2(576, 324)
+script = ExtResource("6_qsoyl")
+strength = 25.0
