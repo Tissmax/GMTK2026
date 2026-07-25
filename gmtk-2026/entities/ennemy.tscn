@@ -1,12 +1,60 @@
 [gd_scene format=3 uid="uid://b8fpc1a2qitxo"]
 
 [ext_resource type="Script" uid="uid://brjcvdav54yad" path="res://entities/ennemy.gd" id="1_ups4y"]
+[ext_resource type="Shader" uid="uid://bcbvqrojhs543" path="res://entities/ennemy_color_changer.gdshader" id="2_12hk0"]
+[ext_resource type="Texture2D" uid="uid://dj0keqm8t60uc" path="res://assets/ennemie_sprite.png" id="2_li10a"]
 [ext_resource type="PackedScene" uid="uid://bbjc1ibsqgjdk" path="res://entities/letter_btn/letter_btn.tscn" id="2_lyfdw"]
 [ext_resource type="PackedScene" uid="uid://cdrtludjirwhy" path="res://entities/ennemy_timer/ennemy_timer.tscn" id="3_lyfdw"]
 
 [sub_resource type="PhysicsMaterial" id="PhysicsMaterial_keurf"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_ups4y"]
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_lr5ee"]
+shader = ExtResource("2_12hk0")
+shader_parameter/color = Color(0.11372549, 0.24313726, 0.17254902, 1)
+shader_parameter/shadow = Color(0.02745098, 0.1764706, 0.21176471, 1)
+shader_parameter/new_color = Vector4(0, 0, 0, 0)
+shader_parameter/new_shadow = Vector4(0, 0, 0, 0)
+
+[sub_resource type="Animation" id="Animation_12hk0"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Sprite2D:frame")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [1]
+}
+
+[sub_resource type="Animation" id="Animation_lr5ee"]
+resource_name = "idle"
+length = 0.5000042
+loop_mode = 1
+step = 0.041666668
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Sprite2D:frame")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.125, 0.25, 0.375),
+"transitions": PackedFloat32Array(1, 1, 1, 1),
+"update": 1,
+"values": [0, 1, 2, 3]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_2gpf3"]
+_data = {
+&"RESET": SubResource("Animation_12hk0"),
+&"idle": SubResource("Animation_lr5ee")
+}
 
 [node name="Ennemy" type="StaticBody2D" unique_id=1580191902]
 physics_material_override = SubResource("PhysicsMaterial_keurf")
@@ -17,13 +65,21 @@ metadata/_custom_type_script = "uid://brjcvdav54yad"
 shape = SubResource("RectangleShape2D_ups4y")
 
 [node name="Sprite2D" type="Sprite2D" parent="." unique_id=121368669]
+material = SubResource("ShaderMaterial_lr5ee")
+scale = Vector2(2, 2)
+texture = ExtResource("2_li10a")
+hframes = 4
+frame = 1
 
 [node name="LetterBtn" parent="." unique_id=879784607 instance=ExtResource("2_lyfdw")]
 position = Vector2(80, -53)
 scale = Vector2(3, 3)
 
 [node name="EnnemyTimer" parent="." unique_id=1827601491 instance=ExtResource("3_lyfdw")]
-position = Vector2(-59, -61)
+position = Vector2(-79, 27)
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="." unique_id=1053874023]
+libraries/ = SubResource("AnimationLibrary_2gpf3")
 
 [connection signal="ennemy_timeout" from="EnnemyTimer" to="." method="_enemy_timeout"]
 [connection signal="is_in_killzone" from="EnnemyTimer" to="." method="_on_ennemy_timer_is_in_killzone"]

@@ -6,12 +6,14 @@ var LETTERS = [
 
 
 func pick_letters(multiple:bool)->Array:
-	var letter = LETTERS.pick_random()
-	LETTERS.erase(letter)
 	var letters:Array
-	letters.push_back(letter)
+	if not multiple:
+		var letter = LETTERS.pick_random()
+		LETTERS.erase(letter)
+		letters.push_back(letter)
+	print(LETTERS)
 	return letters
-
+	
 
 func add_letters(letter:Array):
 	LETTERS.append_array(letter)
