@@ -10,6 +10,8 @@ var score: int
 func lose_hp(amount: int):
 	lifes -= amount
 	health_bar.loose_hp()
+	if lifes <= 0:
+		Global.game_controller.change_2D_scene("res://scenes/GameOver.tscn")
 
 func _ready() -> void:
 	EnnemyManager.enemy_killed.connect(_on_enemy_killed)

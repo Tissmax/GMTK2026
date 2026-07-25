@@ -29,7 +29,6 @@ func _on_enemy_killed(_enemy: Ennemy):
 func _on_timer_timeout():
 	if nb_spawns <= 0:
 		return
-
 	EnnemyManager.spawn_ennemy(types.pick_random())
 	spawned += 1
 	ennemies_alive += 1
