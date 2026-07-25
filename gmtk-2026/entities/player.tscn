@@ -3,6 +3,112 @@
 [ext_resource type="Script" uid="uid://dd81rrqlokakn" path="res://entities/player.gd" id="1_merdl"]
 [ext_resource type="Script" uid="uid://cyu6myqr6v1pi" path="res://entities/health_bar.gd" id="2_e4p34"]
 [ext_resource type="PackedScene" uid="uid://7ui5kl1fgktb" path="res://scenes/heart_bar.tscn" id="3_rfe5m"]
+[ext_resource type="Texture2D" uid="uid://d1fuukrmits3x" path="res://assets/hand_staff.png" id="4_qly61"]
+[ext_resource type="Texture2D" uid="uid://dhvlgmphuvf3d" path="res://assets/ticking_clock.png" id="5_qsoyl"]
+
+[sub_resource type="Animation" id="Animation_qly61"]
+resource_name = "HitStaff"
+length = 0.6
+loop_mode = 1
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Arms/Staff:frame")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.2, 0.4),
+"transitions": PackedFloat32Array(1, 1, 1),
+"update": 1,
+"values": [20, 21, 22]
+}
+
+[sub_resource type="Animation" id="Animation_qsoyl"]
+resource_name = "IdleStaff"
+loop_mode = 1
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Arms/Staff:frame")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.3),
+"transitions": PackedFloat32Array(1, 1),
+"update": 1,
+"values": [0, 1]
+}
+
+[sub_resource type="Animation" id="Animation_6nm46"]
+resource_name = "MissStaff"
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Arms/Staff:frame")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.13333334, 0.26666668, 0.36666667, 0.46666667, 0.56666666, 0.6666667, 0.76666665, 0.8666667),
+"transitions": PackedFloat32Array(1, 1, 1, 1, 1, 1, 1, 1, 1),
+"update": 1,
+"values": [11, 10, 11, 13, 14, 15, 16, 17, 18]
+}
+
+[sub_resource type="Animation" id="Animation_i623q"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Arms/Staff:frame")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [0]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("Arms/Clock:frame")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [0]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_tjdhl"]
+_data = {
+&"HitStaff": SubResource("Animation_qly61"),
+&"IdleStaff": SubResource("Animation_qsoyl"),
+&"MissStaff": SubResource("Animation_6nm46"),
+&"RESET": SubResource("Animation_i623q")
+}
+
+[sub_resource type="Animation" id="Animation_ef06p"]
+resource_name = "Tik"
+length = 7.5
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath(".:frame")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 1, 2, 3, 4, 5, 6, 7),
+"transitions": PackedFloat32Array(1, 1, 1, 1, 1, 1, 1, 1),
+"update": 1,
+"values": [0, 1, 2, 3, 4, 5, 6, 7]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_x08pd"]
+_data = {
+&"Tik": SubResource("Animation_ef06p")
+}
 
 [node name="Player" type="Node2D" unique_id=135027150]
 script = ExtResource("1_merdl")
@@ -25,3 +131,26 @@ scale = Vector2(3, 3)
 [node name="HeartBar3" parent="HealthBar" unique_id=1611787625 instance=ExtResource("3_rfe5m")]
 position = Vector2(76, -17)
 scale = Vector2(3, 3)
+
+[node name="Arms" type="Node2D" parent="." unique_id=1263927926]
+position = Vector2(861, 481)
+
+[node name="Staff" type="Sprite2D" parent="Arms" unique_id=303905035]
+position = Vector2(-283, -44)
+scale = Vector2(0.7, 0.7)
+texture = ExtResource("4_qly61")
+hframes = 10
+vframes = 3
+
+[node name="AnimationPlayerStaff" type="AnimationPlayer" parent="Arms/Staff" unique_id=1314109671]
+root_node = NodePath("../../..")
+libraries/ = SubResource("AnimationLibrary_tjdhl")
+
+[node name="Clock" type="Sprite2D" parent="Arms" unique_id=668207143]
+position = Vector2(-253, -28)
+scale = Vector2(0.6, 0.6)
+texture = ExtResource("5_qsoyl")
+hframes = 8
+
+[node name="AnimationPlayerClock" type="AnimationPlayer" parent="Arms/Clock" unique_id=1873531043]
+libraries/ = SubResource("AnimationLibrary_x08pd")
