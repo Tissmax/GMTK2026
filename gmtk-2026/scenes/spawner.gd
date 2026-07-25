@@ -23,11 +23,10 @@ func _ready():
 func _on_enemy_killed(_enemy: Ennemy):
 	killed += 1
 	ennemies_alive -= 1
-	if killed == total_spawns and ennemies_alive == 0:
+	if ennemies_alive == 0:
 		Global.game_controller.change_2D_scene(next_scene)
 
 func _on_timer_timeout():
-
 	if nb_spawns <= 0:
 		return
 

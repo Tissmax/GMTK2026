@@ -5,6 +5,8 @@
 [ext_resource type="PackedScene" uid="uid://bbjc1ibsqgjdk" path="res://entities/letter_btn/letter_btn.tscn" id="2_lyfdw"]
 [ext_resource type="Texture2D" uid="uid://biwiu3aap3vu1" path="res://assets/ennemies/enemy.png" id="3_12hk0"]
 [ext_resource type="PackedScene" uid="uid://cdrtludjirwhy" path="res://entities/ennemy_timer/ennemy_timer.tscn" id="3_lyfdw"]
+[ext_resource type="AudioStream" uid="uid://5c16w21s8vjh" path="res://assets/music/FrappeFlop.wav" id="6_2gpf3"]
+[ext_resource type="AudioStream" uid="uid://cxids8g6vrdam" path="res://assets/music/SpawnEnnemies.wav" id="6_lr5ee"]
 
 [sub_resource type="PhysicsMaterial" id="PhysicsMaterial_keurf"]
 
@@ -137,8 +139,10 @@ libraries/ = SubResource("AnimationLibrary_2gpf3")
 [node name="Sounds" type="Node" parent="." unique_id=1911706547]
 
 [node name="Flop" type="AudioStreamPlayer" parent="Sounds" unique_id=1870105980]
+stream = ExtResource("6_2gpf3")
 
 [node name="Spawn" type="AudioStreamPlayer" parent="Sounds" unique_id=1579366166]
+stream = ExtResource("6_lr5ee")
 
 [connection signal="ennemy_timeout" from="EnnemyTimer" to="." method="_enemy_timeout"]
 [connection signal="is_in_killzone" from="EnnemyTimer" to="." method="_on_ennemy_timer_is_in_killzone"]

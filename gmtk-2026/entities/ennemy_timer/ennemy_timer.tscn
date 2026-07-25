@@ -3,6 +3,33 @@
 [ext_resource type="Script" uid="uid://gyf1yblo2ox1" path="res://entities/ennemy_timer/ennemy_timer.gd" id="1_0vqqj"]
 [ext_resource type="Texture2D" uid="uid://bw7nbkmt82dfy" path="res://assets/ennemies/timer.png" id="1_oj4ve"]
 
+[sub_resource type="Shader" id="Shader_0vqqj"]
+resource_local_to_scene = true
+code = "shader_type canvas_item;
+
+uniform vec4 color: source_color;
+uniform vec4 new_color: source_color;
+uniform bool active = false;
+
+void fragment() {
+    vec4 current_pixel = texture(TEXTURE, UV);
+
+    COLOR = current_pixel;
+	if (active) {
+	    if (distance(current_pixel.rgb, color.rgb) < 0.05) {
+            COLOR = vec4(new_color.rgb, current_pixel.a);
+        }
+	}
+
+}"
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_v06nd"]
+resource_local_to_scene = true
+shader = SubResource("Shader_0vqqj")
+shader_parameter/color = Color(0.7058824, 0.33333334, 0.35686275, 1)
+shader_parameter/new_color = Color(0, 0.7529412, 0, 1)
+shader_parameter/active = false
+
 [sub_resource type="Animation" id="Animation_0vqqj"]
 length = 0.001
 tracks/0/type = "value"
@@ -60,6 +87,7 @@ _data = {
 script = ExtResource("1_0vqqj")
 
 [node name="Sprite2D" type="Sprite2D" parent="." unique_id=1521198604]
+material = SubResource("ShaderMaterial_v06nd")
 texture = ExtResource("1_oj4ve")
 hframes = 20
 frame = 2

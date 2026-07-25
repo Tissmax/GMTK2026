@@ -34,16 +34,22 @@ func _enemy_timeout():
 
 func kill_ennemy():
 	letter_btn.hit()
+	
 	if not in_killzone:
 		EnnemyManager.failed_to_kill.emit()
 		animation_player.play("flop")
 		flop.play()
-		EnnemyManager.player_anim_flop.emit()
-	else:
+		EnnemyManager.player_anim_flop.emit(true)
+	elif killed_by_player:
 		animation_player.play("death")
-		EnnemyManager.player_anim_hit.emit()
+		EnnemyManager.player_anim_hit.emit(false)
+	else:
+		animation_player.play("quit")
+		flop.play()
 
-		
+	letter_btn.queue_free()
+	timer.queue_free()
+	
 	await animation_player.animation_finished
 	
 	EnnemyManager.enemy_killed.emit(self)
