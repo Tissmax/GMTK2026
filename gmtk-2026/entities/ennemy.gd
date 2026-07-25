@@ -38,8 +38,11 @@ func kill_ennemy():
 		EnnemyManager.failed_to_kill.emit()
 		animation_player.play("flop")
 		flop.play()
+		EnnemyManager.player_anim_flop.emit()
 	else:
 		animation_player.play("death")
+		EnnemyManager.player_anim_hit.emit()
+
 		
 	await animation_player.animation_finished
 	

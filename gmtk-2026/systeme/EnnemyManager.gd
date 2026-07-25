@@ -8,6 +8,8 @@ var ennemies: Dictionary[Array,Ennemy]
 var timer: Timer
 var spawn_points: Array[Marker2D]
 
+signal player_anim_flop()
+signal player_anim_hit()
 signal enemy_killed(enemy: Ennemy)
 signal failed_to_kill()
 
@@ -33,6 +35,7 @@ func _input(event: InputEvent) -> void:
 		else:
 			# Perte d'HP si mauvaise touche
 			var current_ennemies = ennemies.values() as Array[Ennemy]
+			player_anim_flop.emit()
 			for ennemy in current_ennemies:
 				ennemy.animation_player.play("flop")
 			current_ennemies.front().flop.play()

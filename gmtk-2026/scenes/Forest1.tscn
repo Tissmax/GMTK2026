@@ -22,7 +22,7 @@ next_scene = "res://scenes/Forest2.tscn"
 unique_name_in_owner = true
 
 [node name="Marker2D" type="Marker2D" parent="SpawnPoints" unique_id=2145810699]
-position = Vector2(862, 343)
+position = Vector2(859, 243)
 
 [node name="Marker2D3" type="Marker2D" parent="SpawnPoints" unique_id=2144148243]
-position = Vector2(292, 334)
+position = Vector2(292, 238)

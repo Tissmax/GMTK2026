@@ -21,13 +21,13 @@ types = Array[ExtResource("3_c2jss")]([ExtResource("4_3k7ul")])
 unique_name_in_owner = true
 
 [node name="Marker2D" type="Marker2D" parent="SpawnPoints" unique_id=1399574540]
-position = Vector2(673, 335)
+position = Vector2(969, 174)
 
 [node name="Marker2D2" type="Marker2D" parent="SpawnPoints" unique_id=1503294064]
-position = Vector2(924, 454)
+position = Vector2(575, 310)
 
 [node name="Marker2D3" type="Marker2D" parent="SpawnPoints" unique_id=802417916]
-position = Vector2(493, 466)
+position = Vector2(406, 137)
 
 [node name="Marker2D4" type="Marker2D" parent="SpawnPoints" unique_id=1971870391]
-position = Vector2(283, 219)
+position = Vector2(140, 289)
