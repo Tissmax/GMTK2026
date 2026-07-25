@@ -1,0 +1,11 @@
+[gd_resource type="Resource" script_class="EnnemyData" format=3 uid="uid://ctciglyjtwlap"]
+
+[ext_resource type="Script" uid="uid://b37ljcw5fknp3" path="res://ressources/ennemy_data.gd" id="1_l43bw"]
+
+[resource]
+script = ExtResource("1_l43bw")
+time_to_live = 2.5
+timer_step = 2.0
+color = Color(0.21568628, 0.61960787, 0, 1)
+shadow = Color(0.12599997, 0.36, 0, 1)
+metadata/_custom_type_script = "uid://b37ljcw5fknp3"

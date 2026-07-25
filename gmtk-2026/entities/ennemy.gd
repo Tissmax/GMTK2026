@@ -6,25 +6,29 @@ class_name Ennemy extends StaticBody2D
 @onready var letter_btn: Node2D = $LetterBtn
 @onready var timer: Node2D = $EnnemyTimer
 @onready var animation_player: AnimationPlayer = $AnimationPlayer
+@onready var flop: AudioStreamPlayer = $Sounds/Flop
+@onready var spawn: AudioStreamPlayer = $Sounds/Spawn
+
 var in_killzone: bool = false
 
 var letters: Array
 
 #variable de kill
-var killed: bool = true 
+var killed_by_player: bool = false 
 
 
 #parametrage ennemie
 func _ready() -> void:
-	sprite_2d.texture = data.sprite
 	add_letters()
 	timer.initiate_timer(data)
 	animation_player.play("idle")
 	_init_shader()
+	spawn.play()
 
 # supprime ennemie 
 func _enemy_timeout():
 	EnnemyManager.failed_to_kill.emit()
+	animation_player.play("quit")
 	kill_ennemy()
 
 
@@ -32,11 +36,13 @@ func kill_ennemy():
 	letter_btn.hit()
 	if not in_killzone:
 		EnnemyManager.failed_to_kill.emit()
-		# TODO Animation de fail
+		animation_player.play("flop")
+		flop.play()
 	else:
-		#TODO Animation de mort
-		pass
+		animation_player.play("death")
 		
+	await animation_player.animation_finished
+	
 	EnnemyManager.enemy_killed.emit(self)
 	LetterManager.add_letters(letters)
 	EnnemyManager.ennemies.erase(letters)

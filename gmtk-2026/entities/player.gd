@@ -13,7 +13,7 @@ func _ready() -> void:
 	EnnemyManager.failed_to_kill.connect(_on_kill_fail)
 	
 func _on_enemy_killed(enemy: Ennemy):	
-	if enemy.in_killzone:
+	if enemy.in_killzone and  enemy.killed_by_player:
 		score += 1
 		
 func _on_kill_fail():

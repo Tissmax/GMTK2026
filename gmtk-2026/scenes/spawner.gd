@@ -23,14 +23,10 @@ func _ready():
 func _on_enemy_killed(_enemy: Ennemy):
 	killed += 1
 	ennemies_alive -= 1
-	print(killed, ennemies_alive, total_spawns)
 	if killed == total_spawns and ennemies_alive == 0:
 		Global.game_controller.change_2D_scene(next_scene)
 
 func _on_timer_timeout():
-	print("stopped :", timer.is_stopped())
-	print("time_left :", timer.time_left)
-	print("timeout", nb_spawns)
 
 	if nb_spawns <= 0:
 		return
@@ -50,6 +46,3 @@ func get_spawn_points():
 		nb_spawns += 1
 		if point is Marker2D:
 			EnnemyManager.spawn_points.append(point)
-	
-func _on_last_ennemy_killed():
-	Global.game_controller.change_2D_scene(next_scene)

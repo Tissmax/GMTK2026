@@ -1,0 +1,9 @@
+[gd_resource type="Resource" script_class="EnnemyData" format=3 uid="uid://d3m00hhedds2k"]
+
+[ext_resource type="Script" uid="uid://b37ljcw5fknp3" path="res://ressources/ennemy_data.gd" id="1_5ucnl"]
+
+[resource]
+script = ExtResource("1_5ucnl")
+color = Color(0.7490196, 0, 0, 1)
+shadow = Color(0.5, 0, 0, 1)
+metadata/_custom_type_script = "uid://b37ljcw5fknp3"
