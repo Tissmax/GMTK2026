@@ -8,6 +8,7 @@
 [node name="GameController" type="Node" unique_id=127150836 node_paths=PackedStringArray("level")]
 script = ExtResource("1_ts4rt")
 level = NodePath("Level")
+levels_path = Array[String](["res://scenes/levels/Forest1.tscn", "res://scenes/levels/Forest2.tscn"])
 
 [node name="Level" type="Node2D" parent="." unique_id=632615293]
 

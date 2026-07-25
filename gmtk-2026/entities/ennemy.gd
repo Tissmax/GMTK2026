@@ -46,7 +46,6 @@ func kill_ennemy():
 		damage_player()
 		animation_player.play("quit")
 		flop.play()
-
 	letter_btn.queue_free()
 	timer.queue_free()
 	

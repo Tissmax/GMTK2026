@@ -1,27 +1,14 @@
 extends Node
-const EnemyScene = preload("res://entities/ennemy.tscn")
-const STANDARD = preload("res://ressources/basic.tres")
-const RAPIDE = preload("res://ressources/fast.tres")
-
 
 var ennemies: Dictionary[Array,Ennemy]
 var timer: Timer
 var invul_timer: Timer
-var spawn_points: Array[Marker2D]
 var can_lose_health: bool = true
 
 signal player_anim_flop(miss: bool)
 signal player_anim_hit(miss: bool)
 signal enemy_killed(enemy: Ennemy)
 signal failed_to_kill()
-
-func spawn_ennemy(type: EnnemyData):
-	var ennemy: Ennemy = EnemyScene.instantiate()
-	ennemy.data = type
-	_pick_spawn_point(ennemy)
-	ennemy.letters = LetterManager.pick_letters(ennemy.data.multiple_letters)
-	ennemies[ennemy.letters] = ennemy
-	add_child(ennemy)
 
 func _input(event: InputEvent) -> void:
 	
@@ -59,10 +46,6 @@ func to_array(strings:String)->Array:
 	array.push_back(strings)
 	return array
 	
-func _pick_spawn_point(ennemy: Ennemy):
-	var point = spawn_points.pick_random()
-	ennemy.position = point.position
-	spawn_points.erase(point)
 	
 func trigger_invulnerability(time_in_seconds: float):
 	can_lose_health = false

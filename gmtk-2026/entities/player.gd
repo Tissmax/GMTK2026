@@ -4,10 +4,11 @@ extends Node2D
 @onready var animation_player_clock: AnimationPlayer = $Arms/Clock/AnimationPlayerClock
 @onready var hit_indicator: TextureRect = $HitIndicator
 @onready var camera_2d: Camera2D = $Camera2D
+@onready var score: Label = $Score
 
 
 var lifes: int = 3
-var score: int
+var current_score = 0
 
 func lose_hp(amount: int):
 	var tween = create_tween()
@@ -25,11 +26,14 @@ func _ready() -> void:
 
 	animation_player_clock.play("Tik")
 	animation_player_staff.play("IdleStaff")
+	
+	score.text = str(current_score)
 
 	
 func _on_enemy_killed(enemy: Ennemy):	
 	if enemy.in_killzone and  enemy.killed_by_player:
-		score += 1
+		current_score += 1
+		score.text = str(current_score)
 		
 func _on_kill_fail():
 	lose_hp(1)

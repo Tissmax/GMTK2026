@@ -177,3 +177,9 @@ scale = Vector2(3, 3)
 position = Vector2(576, 324)
 script = ExtResource("6_qsoyl")
 strength = 25.0
+
+[node name="Score" type="Label" parent="." unique_id=1474750238]
+offset_left = 1015.6957
+offset_top = 28.0
+offset_right = 1127.0
+offset_bottom = 92.0
