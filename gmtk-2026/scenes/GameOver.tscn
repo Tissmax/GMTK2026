@@ -1,0 +1,24 @@
+[gd_scene format=3 uid="uid://blfid0ogkob5m"]
+
+[ext_resource type="Script" uid="uid://blmh67rqyucn7" path="res://scenes/game_over_screen.gd" id="1_6bcno"]
+[ext_resource type="Texture2D" uid="uid://b5cxrwje00rvp" path="res://assets/GameOver.png" id="2_qae0b"]
+
+[node name="GameOver" type="Node2D" unique_id=463787532]
+
+[node name="GameOverScreen" type="CanvasLayer" parent="." unique_id=364225881]
+script = ExtResource("1_6bcno")
+
+[node name="TextureRect" type="TextureRect" parent="GameOverScreen" unique_id=1357951907]
+offset_right = 1150.0
+offset_bottom = 646.0
+texture = ExtResource("2_qae0b")
+
+[node name="Retry" type="Button" parent="GameOverScreen" unique_id=699614259]
+offset_left = 430.0
+offset_top = 388.0
+offset_right = 672.0
+offset_bottom = 447.0
+text = "Retry
+"
+
+[connection signal="pressed" from="GameOverScreen/Retry" to="GameOverScreen" method="_on_retry_pressed"]
