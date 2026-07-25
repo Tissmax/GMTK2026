@@ -3,7 +3,7 @@
 [ext_resource type="Texture2D" uid="uid://bq67ph85owxg4" path="res://assets/forest1.jpg" id="1_utwfs"]
 [ext_resource type="Script" uid="uid://c0erdo710ugv2" path="res://scenes/spawner.gd" id="2_n3f0o"]
 [ext_resource type="Script" uid="uid://b37ljcw5fknp3" path="res://ressources/ennemy_data.gd" id="3_c2jss"]
-[ext_resource type="Resource" uid="uid://bb12c47ffun6m" path="res://ressources/rapide.tres" id="4_3k7ul"]
+[ext_resource type="Resource" uid="uid://ctciglyjtwlap" path="res://ressources/fast.tres" id="4_3k7ul"]
 
 [node name="Forest2" type="Node2D" unique_id=64502899]
 

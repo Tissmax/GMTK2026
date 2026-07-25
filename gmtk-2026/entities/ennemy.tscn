@@ -2,8 +2,8 @@
 
 [ext_resource type="Script" uid="uid://brjcvdav54yad" path="res://entities/ennemy.gd" id="1_ups4y"]
 [ext_resource type="Shader" uid="uid://bcbvqrojhs543" path="res://entities/ennemy_color_changer.gdshader" id="2_12hk0"]
-[ext_resource type="Texture2D" uid="uid://dj0keqm8t60uc" path="res://assets/ennemie_sprite.png" id="2_li10a"]
 [ext_resource type="PackedScene" uid="uid://bbjc1ibsqgjdk" path="res://entities/letter_btn/letter_btn.tscn" id="2_lyfdw"]
+[ext_resource type="Texture2D" uid="uid://biwiu3aap3vu1" path="res://assets/ennemies/enemy.png" id="3_12hk0"]
 [ext_resource type="PackedScene" uid="uid://cdrtludjirwhy" path="res://entities/ennemy_timer/ennemy_timer.tscn" id="3_lyfdw"]
 
 [sub_resource type="PhysicsMaterial" id="PhysicsMaterial_keurf"]
@@ -32,6 +32,39 @@ tracks/0/keys = {
 "values": [1]
 }
 
+[sub_resource type="Animation" id="Animation_2gpf3"]
+resource_name = "death"
+length = 1.2
+step = 0.041666668
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Sprite2D:frame")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.104166664, 0.20833333, 0.3125, 0.40625, 0.5, 0.6041667, 0.6979167, 0.8020833, 0.90625, 1, 1.1041666),
+"transitions": PackedFloat32Array(1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1),
+"update": 1,
+"values": [0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11]
+}
+
+[sub_resource type="Animation" id="Animation_a51so"]
+resource_name = "flop"
+step = 0.041666668
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Sprite2D:frame")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.20833333, 0.41666666, 0.59375, 0.7083333, 0.9166667),
+"transitions": PackedFloat32Array(1, 1, 1, 1, 1, 1),
+"update": 1,
+"values": [12, 13, 14, 15, 16, 17]
+}
+
 [sub_resource type="Animation" id="Animation_lr5ee"]
 resource_name = "idle"
 length = 0.5000042
@@ -47,13 +80,32 @@ tracks/0/keys = {
 "times": PackedFloat32Array(0, 0.125, 0.25, 0.375),
 "transitions": PackedFloat32Array(1, 1, 1, 1),
 "update": 1,
-"values": [0, 1, 2, 3]
+"values": [24, 25, 26, 27]
+}
+
+[sub_resource type="Animation" id="Animation_6m3gj"]
+resource_name = "quit"
+step = 0.041666668
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Sprite2D:frame")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.104166664, 0.20833333, 0.30208334, 0.40625, 0.5, 0.6041667, 0.7083333, 0.8020833, 0.8958333),
+"transitions": PackedFloat32Array(1, 1, 1, 1, 1, 1, 1, 1, 1, 1),
+"update": 1,
+"values": [36, 37, 38, 39, 40, 41, 42, 43, 44, 45]
 }
 
 [sub_resource type="AnimationLibrary" id="AnimationLibrary_2gpf3"]
 _data = {
 &"RESET": SubResource("Animation_12hk0"),
-&"idle": SubResource("Animation_lr5ee")
+&"death": SubResource("Animation_2gpf3"),
+&"flop": SubResource("Animation_a51so"),
+&"idle": SubResource("Animation_lr5ee"),
+&"quit": SubResource("Animation_6m3gj")
 }
 
 [node name="Ennemy" type="StaticBody2D" unique_id=1580191902]
@@ -67,8 +119,9 @@ shape = SubResource("RectangleShape2D_ups4y")
 [node name="Sprite2D" type="Sprite2D" parent="." unique_id=121368669]
 material = SubResource("ShaderMaterial_lr5ee")
 scale = Vector2(2, 2)
-texture = ExtResource("2_li10a")
-hframes = 4
+texture = ExtResource("3_12hk0")
+hframes = 12
+vframes = 4
 frame = 1
 
 [node name="LetterBtn" parent="." unique_id=879784607 instance=ExtResource("2_lyfdw")]
@@ -80,6 +133,12 @@ position = Vector2(-79, 27)
 
 [node name="AnimationPlayer" type="AnimationPlayer" parent="." unique_id=1053874023]
 libraries/ = SubResource("AnimationLibrary_2gpf3")
+
+[node name="Sounds" type="Node" parent="." unique_id=1911706547]
+
+[node name="Flop" type="AudioStreamPlayer" parent="Sounds" unique_id=1870105980]
+
+[node name="Spawn" type="AudioStreamPlayer" parent="Sounds" unique_id=1579366166]
 
 [connection signal="ennemy_timeout" from="EnnemyTimer" to="." method="_enemy_timeout"]
 [connection signal="is_in_killzone" from="EnnemyTimer" to="." method="_on_ennemy_timer_is_in_killzone"]

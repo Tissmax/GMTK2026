@@ -1,9 +1,9 @@
 extends Node
 const EnemyScene = preload("res://entities/ennemy.tscn")
-const GHOST = preload("res://ressources/ghost.tres")
-const LINGUISTE = preload("res://ressources/linguiste.tres")
-const RAPIDE = preload("res://ressources/rapide.tres")
-const STANDARD = preload("res://ressources/standard.tres")
+const STANDARD = preload("res://ressources/basic.tres")
+const RAPIDE = preload("res://ressources/fast.tres")
+
+
 var ennemies: Dictionary[Array,Ennemy]
 var timer: Timer
 var spawn_points: Array[Marker2D]
@@ -28,9 +28,14 @@ func _input(event: InputEvent) -> void:
 		var touche = to_array(event.as_text_key_label())
 		if ennemies.has(touche):
 			var ennemie = ennemies.get(touche)
+			ennemie.killed_by_player = true
 			ennemie.kill_ennemy()
 		else:
 			# Perte d'HP si mauvaise touche
+			var current_ennemies = ennemies.values() as Array[Ennemy]
+			for ennemy in current_ennemies:
+				ennemy.animation_player.play("flop")
+			current_ennemies.front().flop.play()
 			failed_to_kill.emit()
 			
 func to_array(strings:String)->Array:
