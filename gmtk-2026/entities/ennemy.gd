@@ -10,7 +10,6 @@ class_name Ennemy extends StaticBody2D
 @onready var spawn: AudioStreamPlayer = $Sounds/Spawn
 
 var in_killzone: bool = false
-
 var letters: Array
 
 #variable de kill
@@ -27,26 +26,26 @@ func _ready() -> void:
 
 # supprime ennemie 
 func _enemy_timeout():
-	EnnemyManager.failed_to_kill.emit()
+	damage_player()
 	animation_player.play("quit")
 	kill_ennemy()
 
 
 func kill_ennemy():
-	letter_btn.hit()
-	
 	if not in_killzone:
+		letter_btn.hit()
 		EnnemyManager.failed_to_kill.emit()
 		animation_player.play("flop")
 		flop.play()
 		EnnemyManager.player_anim_flop.emit(true)
 	elif killed_by_player:
+		letter_btn.hit()
 		animation_player.play("death")
 		EnnemyManager.player_anim_hit.emit(false)
 	else:
+		damage_player()
 		animation_player.play("quit")
 		flop.play()
-
 	letter_btn.queue_free()
 	timer.queue_free()
 	
@@ -66,6 +65,7 @@ func add_letters():
  
 
 func _on_ennemy_timer_is_in_killzone() -> void:
+	letter_btn.set_shader()
 	in_killzone = true
 	
 func _init_shader():
@@ -73,3 +73,9 @@ func _init_shader():
 	if shader:
 		shader.set_shader_parameter("new_color", data.color)
 		shader.set_shader_parameter("new_shadow", data.shadow)
+
+func damage_player():
+	if EnnemyManager.can_lose_health:
+		EnnemyManager.failed_to_kill.emit()
+		EnnemyManager.trigger_invulnerability(1)
+	

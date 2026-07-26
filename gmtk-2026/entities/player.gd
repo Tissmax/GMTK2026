@@ -2,12 +2,19 @@ extends Node2D
 @onready var health_bar: HBoxContainer = $HealthBar
 @onready var animation_player_staff: AnimationPlayer = $Arms/Staff/AnimationPlayerStaff
 @onready var animation_player_clock: AnimationPlayer = $Arms/Clock/AnimationPlayerClock
+@onready var hit_indicator: TextureRect = $HitIndicator
+@onready var camera_2d: Camera2D = $Camera2D
+@onready var score: Label = $Score
 
 
 var lifes: int = 3
-var score: int
+var current_score = 0
 
 func lose_hp(amount: int):
+	var tween = create_tween()
+	tween.tween_property(hit_indicator, "modulate", Color(255,255,255,1),0.25)
+	tween.tween_property(hit_indicator, "modulate", Color(255,255,255,0),0.25)
+	camera_2d.shake()
 	lifes -= amount
 	health_bar.loose_hp()
 	if lifes <= 0:
@@ -21,11 +28,14 @@ func _ready() -> void:
 
 	animation_player_clock.play("Tik")
 	animation_player_staff.play("IdleStaff")
+	
+	score.text = str(current_score)
 
 	
 func _on_enemy_killed(enemy: Ennemy):	
 	if enemy.in_killzone and  enemy.killed_by_player:
-		score += 1
+		current_score += 1
+		score.text = str(current_score)
 		
 func _on_kill_fail():
 	lose_hp(1)

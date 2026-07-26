@@ -2,6 +2,17 @@
 
 [ext_resource type="Texture2D" uid="uid://ck4nawlveginn" path="res://assets/ennemies/mob_key.png" id="1_1u6af"]
 [ext_resource type="Script" uid="uid://nv61bq74pxbl" path="res://entities/letter_btn/letter_btn.gd" id="1_23hcc"]
+[ext_resource type="Shader" uid="uid://bomvtpuh5tbdh" path="res://entities/letter_btn/letter_btn.gdshader" id="2_dumwb"]
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_82xam"]
+resource_local_to_scene = true
+shader = ExtResource("2_dumwb")
+shader_parameter/line_colour = Color(1, 1, 1, 1)
+shader_parameter/line_thickness = 0.02000000095
+shader_parameter/border_visibility = 1.0
+shader_parameter/gradient_intensity = 3.0
+shader_parameter/gradient_steps = 10.0
+shader_parameter/active = false
 
 [sub_resource type="Animation" id="Animation_23hcc"]
 length = 0.001
@@ -61,6 +72,7 @@ _data = {
 script = ExtResource("1_23hcc")
 
 [node name="Sprite" type="Sprite2D" parent="." unique_id=1642956611]
+material = SubResource("ShaderMaterial_82xam")
 texture = ExtResource("1_1u6af")
 hframes = 5
 vframes = 2
