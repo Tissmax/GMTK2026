@@ -17,6 +17,8 @@ func lose_hp(amount: int):
 	camera_2d.shake()
 	lifes -= amount
 	health_bar.loose_hp()
+	if lifes <= 0:
+		Global.game_controller.change_2D_scene("res://scenes/GameOver.tscn")
 
 func _ready() -> void:
 	EnnemyManager.enemy_killed.connect(_on_enemy_killed)
