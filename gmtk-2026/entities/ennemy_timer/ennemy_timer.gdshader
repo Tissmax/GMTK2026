@@ -9,7 +9,7 @@ void fragment() {
 
     COLOR = current_pixel;
 	if (active) {
-	    if (distance(current_pixel.rgb, color.rgb) < 0.05) {
+	    if (current_pixel.rgb == color.rgb) {
             COLOR = vec4(new_color.rgb, current_pixel.a);
         }
 	}

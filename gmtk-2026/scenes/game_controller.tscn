@@ -2,7 +2,7 @@
 
 [ext_resource type="Script" uid="uid://cw71n5q8m5rvk" path="res://systeme/scene_manager.gd" id="1_ts4rt"]
 [ext_resource type="PackedScene" uid="uid://d2b6img3yk1ur" path="res://entities/player.tscn" id="3_h843c"]
-[ext_resource type="AudioStream" uid="uid://bf0y8tuv5io1v" path="res://assets/music/OST.mp3" id="4_h843c"]
+[ext_resource type="AudioStream" uid="uid://bgtjumjftqael" path="res://assets/music/GameOST.wav" id="4_h843c"]
 [ext_resource type="PackedScene" uid="uid://dvdor61hem3er" path="res://scenes/Menu.tscn" id="4_rc0pn"]
 
 [node name="GameController" type="Node" unique_id=127150836 node_paths=PackedStringArray("level")]
